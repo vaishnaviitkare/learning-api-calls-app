@@ -3,8 +3,10 @@ import './App.css';
 import MoviesList from './Components/MoviesList';
 function App() {
   const[movies,setMovies]=useState([]);
+  const[isLoading,setIsLoading]=useState(false);
   //use of async await because of then blocks
    const fetchMoviesHandler=async()=>{
+    setIsLoading(true);
     //here i use ghibli api
     const response=await fetch("https://ghibliapi.vercel.app/films")
     const data=await response.json();//converted json text to js
@@ -20,7 +22,7 @@ function App() {
             
           })
            setMovies(transformedmovies);
-        
+            setIsLoading(false);
         }
   return (
  <React.Fragment>
@@ -29,7 +31,9 @@ function App() {
     <button onClick={fetchMoviesHandler}>Fetch Movies</button>
   </section>
   <section className={"display-movies"}>
-    <MoviesList movies={movies}/>
+   {!isLoading && movies.length>0 && <MoviesList movies={movies}/>}
+   {!isLoading && movies.length==0 && <p>Found no movies</p>}
+   {isLoading && <p>Loading...</p>}
   </section>
   </div>
  </React.Fragment>
