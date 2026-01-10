@@ -3,13 +3,11 @@ import './App.css';
 import MoviesList from './Components/MoviesList';
 function App() {
   const[movies,setMovies]=useState([]);
-   const fetchMoviesHandler=()=>{
+  //use of async await because of then blocks
+   const fetchMoviesHandler=async()=>{
     //here i use ghibli api
-    fetch("https://ghibliapi.vercel.app/films")
-         .then((response)=>{
-           return response.json();//converted json text to js
-         })
-         .then((data)=>{
+    const response=await fetch("https://ghibliapi.vercel.app/films")
+    const data=await response.json();//converted json text to js
           //here the data we get has different key name so we store this as per our name//
           const transformedmovies=data.map((movieData)=>{
             return{
@@ -22,7 +20,6 @@ function App() {
             
           })
            setMovies(transformedmovies);
-         })
         
         }
   return (
