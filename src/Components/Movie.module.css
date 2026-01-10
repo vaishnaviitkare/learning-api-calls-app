@@ -1,0 +1,13 @@
+.movie{
+    background-color:rgb(52, 22, 84);
+    width:80%;
+    margin-left: 25px;
+}
+.movie h2{
+    margin-left: 20%;
+    color: yellow;
+}
+.movie p{
+    color: white;
+    margin: 10px;
+}
