@@ -1,0 +1,48 @@
+form{
+width:67rem;
+height:350px;
+background-color: white;
+border-radius: 20px;
+margin-bottom: 20px;
+display: flex;
+flex-direction: column;
+gap:10px;
+}
+.control {
+   margin-left:40px;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.control label{
+    font-weight: bold;
+}
+.control input{
+    width:95%; 
+    border-radius: 20px;
+    height:25px;
+    border: 1px solid #d1d5db;
+}
+.control input:focus {
+  outline: none;
+  border: 1px solid #464747;
+}
+.control textarea{
+width:95%;
+ border-radius: 20px;
+  border: 1px solid #d1d5db;
+}
+.control textarea:focus{
+    outline: none;
+     border: 1px solid #464747;
+}
+.btn{
+  color: white;
+  background-color: rgb(52, 22, 84);
+  padding:10px;
+  width: 130px;
+  border-radius: 50px;
+  margin-left: 45%;
+  margin-top: 10px;
+}

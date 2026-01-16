@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './App.css';
 import MoviesList from './Components/MoviesList';
 import axios from 'axios';
+import AddMovie from './Components/AddMovie';
 function App() {
   const[movies,setMovies]=useState([]);
   const[isLoading,setIsLoading]=useState(false);
@@ -39,7 +40,7 @@ function App() {
           })
           for (const movie of transformedmovies) {
              if(!retryRef.current) return;//stop if cancelled
-            await axios.post(`https://crudcrud.com/api/2b0dadb0fa224ace91c8d9d44bf093bf/movies`,movie);
+            await axios.post(`https://crudcrud.com/api/866b7eb8309b44efa2df5b9289ac5a14/movies`,movie);
             }
            setMovies(transformedmovies);
            success = true;
@@ -53,33 +54,40 @@ function App() {
     }
        setIsLoading(false);
     },[])
-
+/*
     useEffect(() => {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
-
+*/
     const cancelRetryHandler=useCallback(()=>{
        retryRef.current=false;
        setIsLoading(false);
     },[])
+const addMovieHandler=(movie)=>{
+console.log(movie);
+}
 
+let content = <p className="nofound">Found no movies</p>;
+
+if (isLoading) {
+  content = <p>Loading...</p>;
+} else if (error) {
+  content = <p className="error">{error}</p>;
+} else if (movies.length > 0) {
+  content = <MoviesList movies={movies} />;
+}
   return (
  <React.Fragment>
   <div className={"movies-body"}>
+  <section>
+    <AddMovie onAddMovie={addMovieHandler}/>
+  </section>
   <section className={"fetchmovies"}>
     <button onClick={fetchMoviesHandler}>Fetch Movies</button>
   </section>
   <section className={"display-movies"}>
-   {!isLoading && movies.length>0 && <MoviesList movies={movies}/>}
-   {!isLoading && movies.length==0 && !error && <p className={"nofound"}>Found no movies</p>}
-   {!isLoading && error && <p className={'error'}>{error}</p>}
-   {isLoading && 
-   (<div className={"loading-text"}>
-    <p>Loading...</p>
-    <button onClick={cancelRetryHandler}>Cancel retrying</button>
-    </div>)}
-  
-    </section>
+  {content}
+  </section>
   </div>
  </React.Fragment>
   );
