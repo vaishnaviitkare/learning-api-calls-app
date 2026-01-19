@@ -9,7 +9,7 @@ const AddMovie=(props)=>{
        const movie={
         title:titleRef.current.value,
         openingText:openingTextRef.current.value,
-        releasedate:releaseDateRef.current.value,
+        releaseDate:releaseDateRef.current.value,
        }
        props.onAddMovie(movie);
     }
@@ -24,8 +24,8 @@ const AddMovie=(props)=>{
             <textarea rows='5' id='opening-text' ref={openingTextRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='date'>Title</label>
-            <input type='text' id='date' ref={releaseDateRef}/>
+            <label htmlFor='date'>Realeasing Date</label>
+            <input type='date' id='date' ref={releaseDateRef}/>
           </div>
           <button className={classes.btn}>Add Movie</button>
         </form>

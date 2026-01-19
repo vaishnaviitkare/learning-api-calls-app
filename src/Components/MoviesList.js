@@ -6,9 +6,12 @@ const MoviesList=React.memo((props)=>{
         <ul className={classes['movies-list']}>
             {props.movies.map((movie)=>(
                <Movie
+               key={movie.id}
+               id={movie.id}
                title={movie.title}
-               releaseDate={movie.release}
+               releaseDate={movie.releaseDate}
                openingText={movie.openingText}
+               onDelete={props.onRemove}
                /> 
             )
             )}

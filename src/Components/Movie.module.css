@@ -4,10 +4,23 @@
    margin-left: 90px;
 }
 .movie h2{
-    margin-left: 35%;
+    text-align: center;
     color: yellow;
 }
 .movie p{
     color: white;
     margin: 10px;
+}
+.movie h3{
+    color: white;
+    text-align: center;
+}
+.movie button{
+  color: rgb(27, 26, 26);
+  background-color: rgb(199, 176, 223);
+  padding:10px;
+  width: 130px;
+  border-radius: 50px;
+  margin-top: 30px;
+  margin-left: 43%;
 }
